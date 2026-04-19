@@ -14,19 +14,43 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    isAdmin: {
+        role: {
+        type: String,
+        enum: ["buyer", "seller", "admin"],
+        default: "buyer",
+    },
+    phone: {
+        type: String,
+    },
+    isBlocked: {
         type: Boolean,
-        required: true,
         default: false,
     },
-    pic: {
-        type: String,
-        required: true,
-        default: "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+    profilePic:{
+        type: String
     },
-}, {
-    timestamps: true,
-});
+    address:{
+        type: String
+    },
+    isApproved:{
+        type: Boolean,
+        default: true,
+    },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+    varificationToken: {
+        type: String,
+    },
+    resetPasswordToken: {
+        type: String,
+    },
+    resetPasswordExpire: {
+        type: Date,
+    },
+
+}, { timestamps: true });
 
 export default mongoose.model("User", userSchema);
     
